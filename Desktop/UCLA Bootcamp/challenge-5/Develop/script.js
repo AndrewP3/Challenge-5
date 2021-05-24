@@ -20,7 +20,7 @@ var printTasks = function () {
     })
 }
 
-var Today = (moment().format("MM D, YYYY"))
+var Today = (moment().format("MMMM D, YYYY"))
 $("#currentDay").text(Today);
 
 // Color code bins
@@ -29,6 +29,14 @@ var hourAudit = function() {
 
     for(var i=8; i<18; i++) {
         var taskArea = $("#task-"+i)
-        
+        if (currentHour > i) {
+            $(taskArea).addClass("past");
+        } else if (currentHour === i){
+            $(taskArea).addClass("present");
+        } else {
+            $(taskArea).addClass("future")
+        }
     }
 }
+
+// Task update with click
